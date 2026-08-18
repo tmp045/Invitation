@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Thiệp Mời Tốt Nghiệp 🎓</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Floating particles nền -->
+  <div class="particles" id="particles"></div>
+
+  <!-- ===== TRANG BÌA ===== -->
+  <div class="cover-page" id="coverPage">
+    <div class="cover-content">
+      <div class="cap-icon">🎓</div>
+      <p class="cover-sub">Bạn nhận được một lời mời đặc biệt</p>
+      <h1 class="cover-title">Thiệp Mời<br/>Tốt Nghiệp</h1>
+      <p class="cover-name">Phạm Thái Vân Ngọc (Ngọc nè 🫶 )</p>
+      <p class="cover-hint">Chạm để mở thiệp ✨</p>
+      <button class="open-btn" id="openBtn" onclick="openCard()">
+        <span>Mở Thiệp</span>
+        <i class="fa-solid fa-envelope-open-text"></i>
+      </button>
+    </div>
+    <!-- Nút nhạc nằm góc bìa -->
+    <button class="music-toggle" id="musicToggle" onclick="toggleMusic()" title="Bật/tắt nhạc">
+      <i class="fa-solid fa-music" id="musicIcon"></i>
+    </button>
+  </div>
+
+  <!-- ===== THIỆP NỘI DUNG ===== -->
+  <div class="card-wrapper" id="cardWrapper">
+
+    <!-- Nút đóng thiệp -->
+    <button class="close-btn" onclick="closeCard()" title="Đóng thiệp">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- Nút nhạc bên trong thiệp -->
+    <button class="music-toggle inside" id="musicToggleInside" onclick="toggleMusic()" title="Bật/tắt nhạc">
+      <i class="fa-solid fa-music" id="musicIconInside"></i>
+    </button>
+
+    <div class="card-inner">
+
+      <!-- ===== TAB NAVIGATION ===== -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab(0)" data-tab="0">
+          <i class="fa-solid fa-envelope-open-text"></i>
+          <span>Lời Mời</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab(1)" data-tab="1">
+          <i class="fa-solid fa-calendar-days"></i>
+          <span>Sự Kiện</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab(2)" data-tab="2">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Tham Dự</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab(3)" data-tab="3">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Lời Chúc</span>
+        </button>
+      <!-- THÊM NÚT MỚI VÀO ĐÂY -->
+        <button class="tab-btn" onclick="switchTab(4)" data-tab="4">
+          <i class="fa-solid fa-images"></i>
+          <span>Kỷ Niệm</span>
+        </button>
+      </div>
+
+      <!-- ===== TAB PANELS ===== -->
+
+     <!-- ---- PANEL 0: Lời nhắn ---- -->
+      <div class="tab-panel active" data-panel="0">
+        <section class="card-section greet-section">
+          
+          <!-- Chèn tấm ảnh lời mời của bạn vào đây -->
+          <img src="invite_image.jpg" alt="Lời mời tham dự" class="invite-image">
+
+          <!-- Giữ lại nút Xem thông tin sự kiện -->
+          <button class="tab-next-btn" onclick="switchTab(1)">
+            Xem thông tin sự kiện <i class="fa-solid fa-arrow-right"></i>
+          </button>
+          
+        </section>
+      </div>
+
+      <!-- ---- PANEL 1: Thông tin sự kiện ---- -->
+      <div class="tab-panel" data-panel="1">
+        <section class="card-section event-section">
+          <h2 class="section-title">Thông Tin Sự Kiện</h2>
+          <div class="divider-fancy"></div>
+
+          <div class="event-details">
+            <div class="event-item">
+              <div class="event-icon"><i class="fa-solid fa-calendar-days"></i></div>
+              <div class="event-info">
+                <span class="event-label">Ngày</span>
+                <span class="event-value">Thứ Năm, 27 tháng 8 năm 2026</span>
+              </div>
+            </div>
+
+            <div class="event-item">
+              <div class="event-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="event-info">
+                <span class="event-label">Địa Điểm</span>
+                <span class="event-value">Nhà hát Hòa Bình <br/> 240 Đường 3 tháng 2, Phường Hòa Hưng, Thành phố Hồ Chí Minh</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nút Google Maps -->
+          <a class="map-btn"
+             href="https://maps.app.goo.gl/WeoDWkiK2eMrCH9HA"
+             target="_blank" rel="noopener">
+            <i class="fa-solid fa-map-location-dot"></i>
+            Xem trên Google Maps
+          </a>
+
+          <!-- Countdown
+          <div class="countdown-box">
+            <p class="countdown-label">Còn lại</p>
+            <div class="countdown-grid" id="countdown">
+              <div class="cd-item"><span id="cdDays">--</span><small>Ngày</small></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-item"><span id="cdHours">--</span><small>Giờ</small></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-item"><span id="cdMins">--</span><small>Phút</small></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-item"><span id="cdSecs">--</span><small>Giây</small></div>
+            </div>
+          </div> -->
+
+          <button class="tab-next-btn" onclick="switchTab(2)">
+            Xác nhận tham dự <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </section>
+      </div>
+
+      <!-- ---- PANEL 2: Xác nhận tham dự ---- -->
+      <div class="tab-panel" data-panel="2">
+        <div class="rsvp-wrapper">
+            <!-- HÌNH 1: FORM XÁC NHẬN -->
+            <div class="rsvp-card" id="rsvpFormCard">
+                <div class="rsvp-title-wrapper">
+           
+    
+                  <h2 class="rsvp-title">XÁC NHẬN THAM DỰ</h2>
+    
+                    <!-- Hình bên phải (Thay tên file ảnh của bạn vào thuộc tính src) -->
+                  <img src="tho.png" alt="deco-right" class="rsvp-deco-img">
+                </div>
+                <div class="rsvp-divider">-------</div>
+                <p class="rsvp-desc">
+                    Ngọc rất mong được gặp bạn trong buổi tiệc tốt nghiệp! Vui lòng xác nhận tham dự để Ngọc chuẩn bị chu đáo nhé 🎓💙
+                </p>
+                <div class="rsvp-form">
+                    <input type="text" id="rsvpName" class="rsvp-input" placeholder="Tên của bạn">
+                    <button class="rsvp-btn btn-yes" onclick="submitRSVP('yes')">
+                        <span>CÓ, MÌNH SẼ THAM DỰ</span> 
+                        <span>✔</span>
+                    </button>
+                    <button class="rsvp-btn btn-no" onclick="submitRSVP('no')">
+                        <span>MÌNH KHÔNG THỂ THAM DỰ</span> 
+                        <span>✖</span>
+                    </button>
+                </div>
+                <div class="rsvp-footer">💌 Xác nhận tham dự</div>
+            </div>
+
+            <!-- HÌNH 2: KẾT QUẢ KHI CHỌN "CÓ" -->
+            <div class="rsvp-card rsvp-result-card" id="rsvpResultYes" style="display: none;">
+                <div class="result-yes-content">
+                    <h2 class="result-yes-title">🎓 Cảm ơn bạn! 💗</h2>
+                    <p class="result-yes-sub"><strong>Ngọc</strong> đã nhận được xác nhận tham dự của bạn rồi.</p>
+                    <div class="result-divider"></div>
+                    <p class="result-yes-text">
+                        Cảm ơn bạn đã dành thời gian đến chung vui trong ngày đặc biệt này. Sự có mặt của bạn sẽ là niềm vui và món quà ý nghĩa nhất đối với <strong>Ngọc</strong>.
+                    </p>
+                    <div class="result-divider"></div>
+                    <h3 class="result-yes-footer">Hẹn gặp bạn tại buổi tiệc<br>tốt nghiệp nhé! 💖</h3>
+                </div>
+            </div>
+
+            <!-- HÌNH 3: KẾT QUẢ KHI CHỌN "KHÔNG" -->
+            <div class="rsvp-card rsvp-result-card" id="rsvpResultNo" style="display: none;">
+                <h2 class="result-no-title">💗 Cảm ơn bạn!</h2>
+                <p class="result-no-sub">Ngọc đã nhận được phản hồi của bạn rồi.</p>
+                <p class="result-no-text">
+                    Dù bạn không thể tham dự, Ngọc vẫn rất cảm ơn vì bạn đã dành thời gian xác nhận. Hy vọng sẽ sớm có dịp gặp bạn và chia sẻ niềm vui cùng nhau trong một dịp gần nhất.
+                </p>
+                <p class="result-no-text">
+                    Chúc bạn thật nhiều sức khỏe và những điều tốt đẹp nhé! 🌸
+                </p>
+            </div>
+        </div>
+      </div>
+
+      <!-- ---- PANEL 3: Gửi lời chúc ---- -->
+      <div class="tab-panel" data-panel="3">
+        <section class="card-section wishes-section">
+          <h2 class="section-title">Gửi Lời Chúc 💌</h2>
+          <div class="divider-fancy"></div>
+          <p class="wishes-desc">Hãy để lại một lời chúc cho mình nhé!</p>
+
+          <div class="wish-form" id="wishForm">
+            <input type="text" id="wishName" style="display: none;" />
+            <p id="greetingWishName" style="font-weight: 600; color: #555; margin-bottom: 10px;"></p>
+            
+            
+            <textarea id="wishText" placeholder="Viết lời chúc của bạn tại đây... 🌸" class="input-field textarea-field" rows="4" maxlength="300"></textarea>
+            <div class="char-count"><span id="charCount">0</span>/300</div>
+            <button class="send-wish-btn" onclick="sendWish()">
+              <i class="fa-solid fa-paper-plane"></i> Gửi Lời Chúc
+            </button>
+          </div>
+
+          <div class="wish-sent" id="wishSent" style="display:none;">
+            <div class="wish-sent-icon">💌</div>
+            <p>Cảm ơn bạn rất nhiều! Lời chúc của bạn đã được gửi đến mình rồi nhé! 🥰</p>
+            <button class="send-another-btn" onclick="goToMemory()">Xem khoảnh khắc kỷ niệm</button>
+          </div>
+        </section>
+      </div>
+      
+      <!-- ---- PANEL 4: Hình ảnh kỷ niệm ---- -->
+      <div class="tab-panel" data-panel="4">
+        <section class="card-section gallery-section">
+          <h2 class="section-title">Khoảnh Khắc Kỷ Niệm 📸</h2>
+          <div class="divider-fancy"></div>
+          
+         <!-- Khu vực chứa các hình ảnh kiểu Scrapbook -->
+          <div class="scrapbook-gallery">
+            
+            <!-- Ảnh chính to nhất ở giữa -->
+            <img src="image_5.jpg" alt="Ảnh trung tâm" class="scrapbook-center">
+            
+            <!-- 5 Ảnh nhỏ bay xung quanh (theo đúng vị trí bạn vẽ) -->
+            <img src="image_1.JPG" alt="Ảnh 1" class="scrapbook-item item-1"> <!-- Góc trên trái -->
+            <img src="image_2.JPG" alt="Ảnh 2" class="scrapbook-item item-2"> <!-- Góc trên phải -->
+            <img src="image_3.JPG" alt="Ảnh 3" class="scrapbook-item item-3"> <!-- Giữa trái -->
+            <img src="imag_4.JPG" alt="Ảnh 4" class="scrapbook-item item-4"> <!-- Góc dưới trái -->
+            <img src="main_image.jpg" alt="Ảnh 5" class="scrapbook-item item-5"> <!-- Góc dưới phải -->
+            
+          </div>
+          
+        </section>
+      </div>
+
+      <!-- Footer thiệp -->
+      <footer class="card-footer">
+        <img src="vn.png" alt="Hẹn gặp bạn" class="footer-image">
+      </footer>
+
+    </div><!-- end card-inner -->
+  </div><!-- end card-wrapper -->
+
+
+  <!-- Audio element (đặt link nhạc vào src bên dưới) -->
+  <audio id="bgMusic" loop>
+    <!-- Thay link nhạc của bạn vào đây, ví dụ: -->
+    <!-- <source src="nhac-cua-ban.mp3" type="audio/mpeg"> -->
+    <!-- Hoặc dùng link online: -->
+    <source src="nhac.mp3" type="audio/mpeg">
+  </audio>
+
+
+  <script src="script.js"></script>
+
+  <!-- ======================================================= -->
+  <!-- VŨ KHÍ TỐI THƯỢNG: HIỆU ỨNG CHỮ BAY TRỰC TIẾP TRONG HTML -->
+  <!-- ======================================================= -->
+  
+  <!-- 1. CSS Ép buộc -->
+  <style>
+    #superWishesContainer {
+        position: fixed; 
+        top: 0; left: 0;
+        width: 100vw; height: 100vh; 
+        pointer-events: none;
+        z-index: 9999999 !important; /* Đè lên mọi thứ */
+        overflow: hidden; 
+    }
+    .super-wish {
+        position: absolute;
+        bottom: -100px; 
+        color: #ff99c2 !important;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 800 !important;
+        white-space: nowrap;
+    }
+    @keyframes bayLenTroi {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-120vh); } 
+    }
+  </style>
+
+  <!-- 2. Khung chứa -->
+  <div id="superWishesContainer"></div>
+
+  <!-- 3. JS Kích hoạt & Lấy dữ liệu Google Sheets -->
+  <script>
+    // ================= CÀI ĐẶT =================
+    // Dán đường link TSV mà bạn vừa copy ở Bước 1 vào giữa 2 dấu ngoặc kép dưới đây:
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQyZ9dQ6jFXxCEstE8dkw_Rr4D1NEF9oaP6IgSlsz2Z4f9ly859AFNkgU6N-pmgApIsZskgIqptFgGA/pub?gid=143152605&single=true&output=tsv";
+    
+    // Cột chứa lời chúc nằm ở cột số mấy? 
+    // (Tính từ 0: Cột A = 0, Cột B = 1, Cột C = 2, Cột D = 3...)
+    const COT_LOI_CHUC = 2; // Ví dụ: 2 nghĩa là dữ liệu nằm ở cột C
+    // ===========================================
+
+    // Danh sách dự phòng (sẽ hiện trong lúc chờ tải dữ liệu hoặc nếu mạng lỗi)
+   let wishesList = [
+        "Chúc Ngọc tốt nghiệp vui vẻ! 🎉",
+        "Thành công trên con đường sắp tới nhé! ❤️",
+        "Luôn xinh đẹp và hạnh phúc nha! 🌸",
+        "Chúc mừng tân cử nhân! 🎓",
+        "Mãi đỉnh nhé bạn tôi ơi! ✨",
+        "Tương lai rực rỡ nhé Ngọc! 🌟"
+    ];
+    // Hàm lấy dữ liệu từ Google Sheets
+    function loadWishesFromSheet() {
+        if (!SHEET_URL.includes("http")) return; // Bỏ qua nếu chưa nhập link
+        
+        fetch(SHEET_URL)
+            .then(res => res.text())
+            .then(data => {
+                const rows = data.split('\n');
+                const realWishes = [];
+                
+                // Bỏ qua dòng đầu tiên (dòng tiêu đề), bắt đầu đọc từ dòng số 1
+                for(let i = 1; i < rows.length; i++) {
+                    const cols = rows[i].split('\t'); // Cắt dữ liệu bằng khoảng Tab
+                    if(cols[COT_LOI_CHUC] && cols[COT_LOI_CHUC].trim() !== "") {
+                        realWishes.push(cols[COT_LOI_CHUC].trim());
+                    }
+                }
+                
+                if(realWishes.length > 0) {
+                    wishesList = wishesList.concat(realWishes);
+                }
+            })
+            .catch(err => console.log("Không tải được lời chúc:", err));
+    }
+
+    // Tải dữ liệu ngay khi web vừa mở lên
+    loadWishesFromSheet();
+
+    // Vòng lặp bắn chữ bay
+    setInterval(() => {
+        const panel4 = document.querySelector('.tab-panel[data-panel="4"]');
+        const container = document.getElementById('superWishesContainer');
+        
+        if (!container) return;
+        
+        if (panel4 && panel4.classList.contains('active')) {
+            const wishEl = document.createElement('div');
+            wishEl.className = 'super-wish';
+            
+            // Lấy ngẫu nhiên 1 câu trong danh sách vừa tải về
+            wishEl.innerText = wishesList[Math.floor(Math.random() * wishesList.length)];
+            
+            const isLeft = Math.random() > 0.5;
+            wishEl.style.left = (isLeft ? (Math.random() * 13 + 2) : (Math.random() * 15 + 70)) + '%';
+            
+            wishEl.style.fontSize = (Math.random() * 6 + 14) + 'px'; 
+            
+            const duration = Math.random() * 4 + 5; 
+            wishEl.style.animation = `bayLenTroi ${duration}s linear forwards`;
+            
+            container.appendChild(wishEl);
+            
+            setTimeout(() => { if(wishEl.parentNode) wishEl.remove(); }, duration * 1000);
+        } else {
+            container.innerHTML = '';
+        }
+    }, 1000); 
+  </script>
+  <!-- ==================== HẾT PHẦN HIỆU ỨNG ==================== -->
+</body>
+</html>
